@@ -1,0 +1,9 @@
+
+model {
+  for (i in 1:cohortsize){
+    pi[i] <- 1-exp(-beta*AUC_data[i])
+    toxicity[i] ~ dbern(pi[i])
+    }
+    beta~dunif(0,tau)
+    tau <- 1/mean(AUC_data)
+}
